@@ -5,6 +5,12 @@ This is a solution designed for classroom teaching scenarios which allow teacher
 
 This solution is developed for the DIIAGE formation from Centre Universitaire Catholique De Bourgogne (CUCDB) in Dijon, France.
 
+# Feedback
+___
+Thoughts, ideas or questions? Share them with us [here](https://github.com/Grevord/educational-teams-bot/issues/new)!
+
+Please report bugs and code issues [here](https://github.com/Grevord/educational-teams-bot/issues/new).
+
 # Legal notice
 ___
 Please read the [license terms](https://github.com/Grevord/educational-teams-bot/blob/main/LICENSE) applicable to this.
@@ -20,7 +26,3 @@ This app template is provided under the MIT License terms. In addition to these 
 # Contributing
 ___
 This project welcomes contributions and suggestions.
-
-Any suggestions or questions? Share them with us [here](https://github.com/Grevord/educational-teams-bot/issues/new)!
-
-If you encounter a bug or a code issue, tell us [here](https://github.com/Grevord/educational-teams-bot/issues/new)!
