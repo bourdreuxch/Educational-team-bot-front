@@ -1,1 +1,38 @@
-<p>navbar works!</p>
+<div class="container">
+    <div class="navigationList" [ngClass]="{'active': drawerOpen}">
+        <ul>
+            <li class="navigationElement">
+                <a>
+                    <span class="icon"><i class="fas fa-clone"></i></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li class="navigationElement">
+                <a>
+                    <span class="icon"><i class="far fa-question-circle"></i></span>
+                    <span class="title">Questions</span>
+                </a>
+            </li>
+            <li class="navigationElement">
+                <a>
+                    <span class="icon"><i class="fas fa-tags"></i></span>
+                    <span class="title">Tags</span>
+                </a>
+            </li>
+            <li class="navigationElement">
+                <a>
+                    <span class="icon"><i class="fas fa-cog"></i></span>
+                    <span class="title">Settings</span>
+                </a>
+            </li>
+            <li class="navigationElement">
+                <a>
+                    <span class="icon"><i class="far fa-address-card"></i></span>
+                    <span class="title">Profile</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle" [ngClass]="{'active': drawerOpen}" (click)="drawerOpen = !drawerOpen">
+    </div>
+</div>

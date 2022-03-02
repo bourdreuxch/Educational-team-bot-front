@@ -16,7 +16,8 @@ const declarations = [
     CommonModule
   ],
   exports: [
-    PipeExamplePipe
+    PipeExamplePipe,
+    NavbarComponent
   ]
 })
 export class SharedModule { }
