@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { PipeExamplePipe } from './pipes/pipe-example.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-
+const declarations = [
+    PipeExamplePipe,
+    NavbarComponent
+]
 
 @NgModule({
   declarations: [
-    PipeExamplePipe,
-    NavbarComponent
+    ...declarations,
   ],
   imports: [
     CommonModule
