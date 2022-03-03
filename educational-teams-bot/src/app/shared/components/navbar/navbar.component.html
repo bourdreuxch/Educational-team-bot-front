@@ -2,8 +2,8 @@
     <div class="navigationList" [ngClass]="{'active': drawerOpen}">
         <ul>
             <li class="navigationElement">
-                <a>
-                    <span class="icon"><em class="fas fa-clone"></em></span>
+                <a [routerLink]="['/dashboard']">
+                    <span class="icon"><em class="fa-solid fa-chart-pie"></em></span>
                     <span class="title">Dashboard</span>
                 </a>
             </li>
