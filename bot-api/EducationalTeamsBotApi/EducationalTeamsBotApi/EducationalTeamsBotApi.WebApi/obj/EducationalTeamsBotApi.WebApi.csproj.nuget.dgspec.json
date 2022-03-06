@@ -1,0 +1,350 @@
+{
+  "format": 1,
+  "restore": {
+    "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.WebApi\\EducationalTeamsBotApi.WebApi.csproj": {}
+  },
+  "projects": {
+    "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj",
+        "projectName": "EducationalTeamsBotApi.Application",
+        "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj",
+        "packagesPath": "C:\\Users\\sorriauxbenjamin\\.nuget\\packages\\",
+        "outputPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sorriauxbenjamin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\EducationalTeamsBotApi.Domain.csproj": {
+                "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\EducationalTeamsBotApi.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.3.6, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[10.3.6, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\EducationalTeamsBotApi.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\EducationalTeamsBotApi.Domain.csproj",
+        "projectName": "EducationalTeamsBotApi.Domain",
+        "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\EducationalTeamsBotApi.Domain.csproj",
+        "packagesPath": "C:\\Users\\sorriauxbenjamin\\.nuget\\packages\\",
+        "outputPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sorriauxbenjamin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\EducationalTeamsBotApi.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\EducationalTeamsBotApi.Infrastructure.csproj",
+        "projectName": "EducationalTeamsBotApi.Infrastructure",
+        "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\EducationalTeamsBotApi.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\sorriauxbenjamin\\.nuget\\packages\\",
+        "outputPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sorriauxbenjamin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj": {
+                "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.WebApi\\EducationalTeamsBotApi.WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.WebApi\\EducationalTeamsBotApi.WebApi.csproj",
+        "projectName": "EducationalTeamsBotApi.WebApi",
+        "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.WebApi\\EducationalTeamsBotApi.WebApi.csproj",
+        "packagesPath": "C:\\Users\\sorriauxbenjamin\\.nuget\\packages\\",
+        "outputPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.WebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sorriauxbenjamin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj": {
+                "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Application\\EducationalTeamsBotApi.Application.csproj"
+              },
+              "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\EducationalTeamsBotApi.Infrastructure.csproj": {
+                "projectPath": "S:\\DIIAGE\\QBot\\educational-teams-bot\\educational-teams-bot\\bot-api\\EducationalTeamsBotApi\\EducationalTeamsBotApi\\EducationalTeamsBotApi.Infrastructure\\EducationalTeamsBotApi.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.14.0, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
