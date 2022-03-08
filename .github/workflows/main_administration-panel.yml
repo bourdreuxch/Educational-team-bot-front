@@ -7,9 +7,8 @@ on:
   push:
     branches:
       - main
+  project: ./educational-teams-bot  
   workflow_dispatch:
-  project: ./educational-teams-bot
-
 jobs:
   build:
     runs-on: ubuntu-latest
