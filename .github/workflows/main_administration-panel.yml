@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths: 
+      - './educational-teams-bot/'
   workflow_dispatch:
 jobs:
   build:
