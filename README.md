@@ -1,18 +1,18 @@
-# Overwiew
-___
+# Overview
+
 
 This is a solution designed for classroom teaching scenarios which allow teachers, tutors and students to intelligently answer each other's questions within the Microsoft Teams collaboration platform. It is based on Azure Cognitive Services, in particular LUIS and QnA Maker.
 
 This solution is developed for the DIIAGE formation from Centre Universitaire Catholique De Bourgogne (CUCDB) in Dijon, France.
 
 # Feedback
-___
+
 Thoughts, ideas or questions? Share them with us [here](https://github.com/Grevord/educational-teams-bot/issues/new)!
 
 Please report bugs and code issues [here](https://github.com/Grevord/educational-teams-bot/issues/new).
 
 # Legal notice
-___
+
 Please read the [license terms](https://github.com/Grevord/educational-teams-bot/blob/main/LICENSE) applicable to this.
 
 This app template is provided under the MIT License terms. In addition to these terms, by using this app template you agree to the following:
@@ -24,5 +24,5 @@ This app template is provided under the MIT License terms. In addition to these 
 - You must also include your own privacy statement and terms of use for the app if you choose to deploy or share it broadly.
 
 # Contributing
-___
+
 This project welcomes contributions and suggestions.
