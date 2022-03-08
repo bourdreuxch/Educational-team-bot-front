@@ -12,6 +12,9 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    defaults: 
+      run:
+        working-directory: educational-teams-bot
     runs-on: ubuntu-latest
     
 
