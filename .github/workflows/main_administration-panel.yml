@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-  project: ./educational-teams-bot  
   workflow_dispatch:
 jobs:
   build:
