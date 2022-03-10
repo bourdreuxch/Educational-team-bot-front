@@ -16,6 +16,7 @@ import { filter, Subject } from 'rxjs';
 export class AppComponent {
   private readonly _destroying$ = new Subject<void>();
   title = 'Teams Bot';
+  drawerOpen = false;
 
   constructor(
     private authService: MsalService,
@@ -40,6 +41,9 @@ export class AppComponent {
       .subscribe((result) => {});
   }
 
+  setStatusDrawer(value: boolean): void {
+    this.drawerOpen = value;
+  }
   ngOnDestroy(): void {
     this._destroying$.next();
     this._destroying$.complete();
