@@ -47,5 +47,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'DiiageBot'
     slotName: 'production'
-    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
 
