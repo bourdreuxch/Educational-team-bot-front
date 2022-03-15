@@ -1,18 +1,19 @@
 // Scss basis
 @import '../variables.scss';
 
-$spacementDrawer: 1em;
 .nav{
     float: left;
 }
 
 .container{
-    width: calc(100vw - $drawer-min-size - $spacementDrawer);
-    margin-left: calc($drawer-min-size + $spacementDrawer);
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: calc(100vw - $drawer-min-size - $drawer-spacement);
+    margin-left: calc($drawer-min-size + $drawer-spacement);
     transition: 0.5s;
 
     &.active{
-        width: calc(100vw - $drawer-max-size - $spacementDrawer);
-        margin-left: calc($drawer-max-size + $spacementDrawer);
+        width: calc(100vw - $drawer-max-size - $drawer-spacement);
+        margin-left: calc($drawer-max-size + $drawer-spacement);
     }
 }
