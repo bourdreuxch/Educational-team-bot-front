@@ -8,7 +8,7 @@ import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
 
-  drawerOpen: boolean = true;
+  drawerOpen: boolean = false;
   @Output() drawerUpdate: EventEmitter<any> = new EventEmitter<boolean>();
 
   constructor() { }

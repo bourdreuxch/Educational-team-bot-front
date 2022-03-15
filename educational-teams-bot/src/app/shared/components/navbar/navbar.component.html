@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="navigationList" [ngClass]="{'active': drawerOpen}">
+    <div class="navigationList" [ngClass]="{'active': !drawerOpen}">
         <ul>
             <li class="navigationElement">
                 <a [routerLink]="['/dashboard']">
@@ -33,6 +33,6 @@
             </li>
         </ul>
     </div>
-    <div class="toggle" [ngClass]="{'active': drawerOpen}" (click)="updateDrawer()">
+    <div class="toggle" [ngClass]="{'active': !drawerOpen}" (click)="updateDrawer()">
     </div>
 </div>
