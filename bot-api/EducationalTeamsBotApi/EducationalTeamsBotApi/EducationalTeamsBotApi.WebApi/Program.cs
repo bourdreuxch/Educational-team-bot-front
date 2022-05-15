@@ -10,8 +10,10 @@ using EducationalTeamsBotApi.Infrastructure;
 using EducationalTeamsBotApi.WebApi.Common.Extensions;
 using EducationalTeamsBotApi.WebApi.Services;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Identity.Web;
 using NLog;
 using NLog.Web;
+using System.Text.Json.Serialization;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -21,7 +23,11 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
-    builder.Services.AddControllers();
+    builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition
+                       = JsonIgnoreCondition.WhenWritingNull;
+    });
 
     // NLog: Setup NLog for Dependency injection
     builder.Logging.ClearProviders();
@@ -37,6 +43,12 @@ try
 
     builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
     builder.Services.AddHttpContextAccessor();
+
+    // Graph API
+    builder.Services.AddHttpClient();
+    builder.Services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration)
+        .EnableTokenAcquisitionToCallDownstreamApi()
+        .AddInMemoryTokenCaches();
 
     builder.Services.AddApiVersioning(o =>
     {
