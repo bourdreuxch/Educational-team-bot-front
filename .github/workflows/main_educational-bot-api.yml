@@ -10,7 +10,6 @@ on:
     paths:
       - 'bot-api/EducationalTeamsBotApi'
   workflow_dispatch:
-
 jobs:
   build:
   defaults: 
