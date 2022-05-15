@@ -1,0 +1,87 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ressources_base_name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20
+        }
+    },
+    "functions": [],
+    "variables": {
+
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2016-09-01",
+            "name": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "name": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
+                "hostingEnvironment": "",
+                "numberOfWorkers": 1
+            },
+            "sku": {
+                "name": "F1",
+                "tier": "Free",
+                "size": "F1",
+                "family": "F",
+                "capacity": 0
+            }
+        },
+
+        {
+            "name": "[concat(parameters('ressources_base_name'), '-front')]",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('ressources_base_name'), 'serviceapp')]": "Resource",
+                "displayName": "[concat(parameters('ressources_base_name'), '-front')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', concat(parameters('ressources_base_name'), 'serviceapp'))]"
+            ],
+            "properties": {
+                "name": "[concat(parameters('ressources_base_name'), '-front')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  concat(parameters('ressources_base_name'), 'serviceapp'))]"
+            }
+        },
+        {
+            "name": "[concat(parameters('ressources_base_name'), '-api')]",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('ressources_base_name'), 'serviceapp')]": "Resource",
+                "displayName": "[concat(parameters('ressources_base_name'), '-api')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', concat(parameters('ressources_base_name'), 'serviceapp'))]"
+            ],
+            "properties": {
+                "name": "[concat(parameters('ressources_base_name'), '-api')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  concat(parameters('ressources_base_name'), 'serviceapp'))]"
+
+            }
+        },
+        {
+            "name": "[concat(parameters('ressources_base_name'), 'testostorage')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-04-01",
+            "tags": {
+                "displayName": "[concat(parameters('ressources_base_name'), 'testostorage')]"
+            },
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS"
+            }
+        }
+
+
+    ],
+    "outputs": {}
+}
