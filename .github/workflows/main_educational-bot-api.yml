@@ -13,7 +13,10 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+  defaults: 
+      run:
+        working-directory: 'bot-api/EducationalTeamsBotApi'
+  runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
