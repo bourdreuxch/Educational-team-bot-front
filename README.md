@@ -5,6 +5,12 @@ This is a solution designed for classroom teaching scenarios which allow teacher
 
 This solution is developed for the DIIAGE formation from Centre Universitaire Catholique De Bourgogne (CUCDB) in Dijon, France.
 
+# Use it yourself
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/
+https://raw.githubusercontent.com/Grevord/educational-teams-bot/features/arm_templates/arm_templates/arm_deploy_ressources.json)
+
+
 # Feedback
 ___
 Thoughts, ideas or questions? Share them with us [here](https://github.com/Grevord/educational-teams-bot/issues/new)!

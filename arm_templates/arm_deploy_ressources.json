@@ -10,16 +10,19 @@
     },
     "functions": [],
     "variables": {
-
+        "serverfarmName": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
+        "frontName":"[concat(parameters('ressources_base_name'), '-front')]",
+        "apiName": "[concat(parameters('ressources_base_name'), '-api')]",
+        "storageAccountsName": "[concat(parameters('ressources_base_name'), '-storage')]"
     },
     "resources": [
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2016-09-01",
-            "name": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
+            "name": "[variables('serverfarmName')]",
             "location": "[resourceGroup().location]",
             "properties": {
-                "name": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
+                "name": "[variables('serverfarmName')]",
                 "hostingEnvironment": "",
                 "numberOfWorkers": 1
             },
@@ -33,46 +36,46 @@
         },
 
         {
-            "name": "[concat(parameters('ressources_base_name'), '-front')]",
+            "name": "[variables('frontName')]",
             "type": "Microsoft.Web/sites",
             "apiVersion": "2020-12-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('ressources_base_name'), 'serviceapp')]": "Resource",
-                "displayName": "[concat(parameters('ressources_base_name'), '-front')]"
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]": "Resource",
+                "displayName": "[variables('frontName')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', concat(parameters('ressources_base_name'), 'serviceapp'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarmName'))]"
             ],
             "properties": {
-                "name": "[concat(parameters('ressources_base_name'), '-front')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  concat(parameters('ressources_base_name'), 'serviceapp'))]"
+                "name": "[variables('frontName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  variables('serverfarmName'))]"
             }
         },
         {
-            "name": "[concat(parameters('ressources_base_name'), '-api')]",
+            "name": "[variables('apiName')]",
             "type": "Microsoft.Web/sites",
             "apiVersion": "2020-12-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('ressources_base_name'), 'serviceapp')]": "Resource",
-                "displayName": "[concat(parameters('ressources_base_name'), '-api')]"
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]": "Resource",
+                "displayName": "[variables('apiName')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', concat(parameters('ressources_base_name'), 'serviceapp'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarmName'))]"
             ],
             "properties": {
-                "name": "[concat(parameters('ressources_base_name'), '-api')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  concat(parameters('ressources_base_name'), 'serviceapp'))]"
+                "name": "[variables('apiName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',  variables('serverfarmName'))]"
 
             }
         },
         {
-            "name": "[concat(parameters('ressources_base_name'), 'testostorage')]",
+            "name": "[variables('storageAccountsName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-04-01",
             "tags": {
-                "displayName": "[concat(parameters('ressources_base_name'), 'testostorage')]"
+                "displayName": "[variables('storageAccountsName')]"
             },
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
@@ -80,7 +83,7 @@
                 "name": "Standard_LRS"
             }
         }
-
+        
 
     ],
     "outputs": {}
