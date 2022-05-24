@@ -4,12 +4,19 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Text.Json.Serialization;
 using EducationalTeamsBotApi.Application;
 using EducationalTeamsBotApi.Application.Common.Interfaces;
 using EducationalTeamsBotApi.Infrastructure;
 using EducationalTeamsBotApi.WebApi.Common.Extensions;
 using EducationalTeamsBotApi.WebApi.Services;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using NLog;
 using NLog.Web;
 
@@ -21,7 +28,11 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
-    builder.Services.AddControllers();
+    builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition
+                       = JsonIgnoreCondition.WhenWritingNull;
+    });
 
     // NLog: Setup NLog for Dependency injection
     builder.Logging.ClearProviders();
@@ -37,6 +48,21 @@ try
 
     builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
     builder.Services.AddHttpContextAccessor();
+
+    // Add cors
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(builder => {
+            builder.AllowAnyOrigin();
+            builder.AllowAnyHeader();
+        });
+    });
+
+    builder.Services.AddHttpClient();
+
+    builder.Services.AddMicrosoftIdentityWebApiAuthentication(builder.Configuration)
+        .EnableTokenAcquisitionToCallDownstreamApi()
+        .AddInMemoryTokenCaches();
 
     builder.Services.AddApiVersioning(o =>
     {
@@ -70,6 +96,8 @@ try
         app.UseSwaggerWithVersioning();
     }
 
+    // Authentication & Authorization
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();

@@ -3,16 +3,16 @@
 // Copyright (c) DIIAGE 2022. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-
-using EducationalTeamsBotApi.Application.Common.Interfaces;
-using EducationalTeamsBotApi.Infrastructure.Persistence;
-using EducationalTeamsBotApi.Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EducationalTeamsBotApi.Infrastructure
 {
+    using EducationalTeamsBotApi.Application.Common.Interfaces;
+    using EducationalTeamsBotApi.Infrastructure.Persistence;
+    using EducationalTeamsBotApi.Infrastructure.Services;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Graph;
+
     /// <summary>
     /// Static class providing an extension method to handle dependency injection for the infrastructure layer.
     /// </summary>
@@ -26,22 +26,8 @@ namespace EducationalTeamsBotApi.Infrastructure
         /// <returns>Returns a <see cref="ServiceCollection"/>.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            if (bool.Parse(configuration["UseInMemoryDatabase"]))
-            {
-                services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseInMemoryDatabase("DbMemory"));
-            }
-            else
-            {
-                services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
-                        configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-            }
-
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-
-            services.AddScoped<IDomainEventService, DomainEventService>();
+            services.AddScoped<GraphServiceClient, GraphServiceClient>();
+            services.AddScoped<IGraphService, GraphService>();
 
             return services;
         }

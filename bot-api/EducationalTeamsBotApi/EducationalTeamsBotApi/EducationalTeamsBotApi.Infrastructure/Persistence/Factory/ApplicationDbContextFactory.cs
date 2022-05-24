@@ -23,10 +23,10 @@ namespace EducationalTeamsBotApi.Infrastructure.Factory
         public ApplicationDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            Console.WriteLine(args[0]);
-            optionsBuilder.UseSqlServer(
-                args[0],
-                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+            //Console.WriteLine(args[0]);
+            //optionsBuilder.UseSqlServer(
+            //    args[0],
+            //    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
 
             return new ApplicationDbContext(optionsBuilder.Options, null, null);
         }
