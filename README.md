@@ -7,8 +7,9 @@ This solution is developed for the DIIAGE formation from Centre Universitaire Ca
 
 # Use it yourself
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/
-https://raw.githubusercontent.com/Grevord/educational-teams-bot/features/arm_templates/arm_templates/arm_deploy_ressources.json)
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FGrevord%2Feducational-teams-bot%2Ffeatures%2Farm_templates%2Farm_templates%2Farm_deploy_ressources.json)
+
 
 
 # Feedback
