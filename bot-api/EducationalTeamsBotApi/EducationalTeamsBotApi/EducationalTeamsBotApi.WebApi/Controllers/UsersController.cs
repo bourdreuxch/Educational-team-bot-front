@@ -6,7 +6,6 @@
 namespace EducationalTeamsBotApi.WebApi.Controllers
 {
     using EducationalTeamsBotApi.Application.Users.Queries.GetUsersQuery;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>

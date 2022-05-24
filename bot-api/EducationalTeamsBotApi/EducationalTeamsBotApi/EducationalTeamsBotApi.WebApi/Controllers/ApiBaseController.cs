@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
     /// <summary>
     /// Abstract class controller to define <see cref="ISender"/>.
     /// </summary>
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public abstract class ApiBaseController : ControllerBase
