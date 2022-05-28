@@ -13,7 +13,9 @@
         "serverfarmName": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
         "frontName":"[concat(parameters('ressources_base_name'), '-front')]",
         "apiName": "[concat(parameters('ressources_base_name'), '-api')]",
-        "storageAccountsName": "[concat(resourceGroup().name, 'storage')]"
+        "storageAccountsName": "[concat(resourceGroup().name, 'storage')]",
+        "tagRessource":"[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]"
+        
     },
     "resources": [
         {
@@ -41,7 +43,7 @@
             "apiVersion": "2020-12-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]": "Resource",
+                "[variables('tagRessource')]": "Resource",
                 "displayName": "[variables('frontName')]"
             },
             "dependsOn": [
@@ -58,7 +60,7 @@
             "apiVersion": "2020-12-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]": "Resource",
+                "[variables('tagRessource')]": "Resource",
                 "displayName": "[variables('apiName')]"
             },
             "dependsOn": [
