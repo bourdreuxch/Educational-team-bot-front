@@ -6,14 +6,52 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 20
-        }
+        },
+        "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20
+        },
+        "appName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20           
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "westus"
+        },
+        "location3": {
+            "type": "string",
+            "defaultValue": "westeurope"
+        },
+        "azureSearchLocation": {
+            "type": "string",
+            "defaultValue": "francecentral"
+        },
+        "sku": {
+            "type": "string",
+            "defaultValue": "F0"
+        },
+        "azureSearchSku": {
+            "type": "string",
+            "defaultValue": "free"
+        },
+        "searchHostingMode": {
+            "type": "string",
+            "defaultValue": "Default"
+        }    
     },
     "functions": [],
     "variables": {
         "serverfarmName": "[concat(parameters('ressources_base_name'), 'serviceapp')]",
         "frontName":"[concat(parameters('ressources_base_name'), '-front')]",
         "apiName": "[concat(parameters('ressources_base_name'), '-api')]",
-        "storageAccountsName": "[concat(resourceGroup().name, 'storage')]"
+        "storageAccountsName": "[concat(resourceGroup().name, 'storage')]",
+         "puredAzureSearchName": "[replace(parameters('appName'), '-', '')]",
+        "normalizedAzureSearchName": "[if(greater(length(variables('puredAzureSearchName')), 40), substring(variables('puredAzureSearchName'), sub(length(variables('puredAzureSearchName')), 40), 40) , variables('puredAzureSearchName'))]",
+        "azureSearchName": "[toLower(concat(variables('normalizedAzureSearchName'), '-as', uniqueString(resourceGroup().id, variables('normalizedAzureSearchName'), parameters('azureSearchSku'), parameters('azureSearchLocation'), parameters('searchHostingMode'))))]"
+    
     },
     "resources": [
         {
@@ -83,8 +121,6 @@
                 "name": "Standard_LRS"
             }
         }
-        
-
     ],
     "outputs": {}
 }
