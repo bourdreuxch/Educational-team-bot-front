@@ -4,10 +4,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System;
-
 namespace EducationalTeamsBotApi.Application.Common.Security
 {
+    using System;
+
     /// <summary>
     /// Specifies the class this attribute is applied to requires authorization.
     /// </summary>
