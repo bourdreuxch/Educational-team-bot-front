@@ -28,6 +28,7 @@ namespace EducationalTeamsBotApi.Infrastructure
         {
             services.AddScoped<GraphServiceClient, GraphServiceClient>();
             services.AddScoped<IGraphService, GraphService>();
+            services.AddScoped<ITagService, TagService>();
 
             return services;
         }
