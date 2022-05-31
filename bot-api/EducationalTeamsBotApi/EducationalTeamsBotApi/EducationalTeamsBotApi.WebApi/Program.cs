@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -76,6 +77,10 @@ try
             new MediaTypeApiVersionReader("ver"));
     });
 
+    builder.Services.AddSingleton<CosmosClient>(serviceProvider =>
+    {
+        return new CosmosClient(Environment.GetEnvironmentVariable("COSMOSDB_CONNECTION_STRING"));
+    });
     builder.Services.AddVersionedApiExplorer(
         options =>
         {
