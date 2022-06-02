@@ -11,6 +11,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     using EducationalTeamsBotApi.Application.Common.Interfaces;
     using EducationalTeamsBotApi.Domain.Entities;
     using Microsoft.Azure.Cosmos;
+    using Microsoft.Azure.Cosmos.Linq;
 
     /// <summary>
     /// Class that will interact with the CosmosDB.
@@ -47,9 +48,15 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<CosmosTag>> GetTags()
+        public async Task<IEnumerable<CosmosTag>> GetTags()
         {
-            throw new NotImplementedException();
+            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
+            var container = db.GetContainer("Tags");
+            var tags = container.GetItemLinqQueryable<CosmosTag>();
+            var iterator = tags.ToFeedIterator();
+            var results = await iterator.ReadNextAsync();
+
+            return Tools.ToIEnumerable<CosmosTag>(results.GetEnumerator());
         }
 
         /// <inheritdoc/>
