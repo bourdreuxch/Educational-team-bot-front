@@ -92,20 +92,6 @@ try
         .EnableTokenAcquisitionToCallDownstreamApi()
         .AddInMemoryTokenCaches();
 
-    //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    //  .AddJwtBearer(options =>
-    //  {
-    //      options.Audience = builder.Configuration["AzureAd:Audience"];
-    //      options.Authority = builder.Configuration["AzureAd:Instance"] + "/" + builder.Configuration["AzureAd:TenantId"];
-    //      options.Events = new JwtBearerEvents
-    //      {
-    //          OnTokenValidated = async context =>
-    //          {
-    //              var token = context.HttpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
-    //          },
-    //      };
-    //  });
-
     builder.Services.AddScoped<ITokenService, TokenService>();
 
     builder.Services.AddApiVersioning(o =>

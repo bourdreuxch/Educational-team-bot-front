@@ -42,7 +42,7 @@ const imports = [
           `${environment.apiEndpoint}/api`,
           [`api://${environment.clientId}/access_as_user`],
         ],
-        ['https://graph.microsoft.com', ['user.read', 'user.read.all']],
+        ['https://graph.microsoft.com', ['user.read.all']],
       ]),
     }
   ),
