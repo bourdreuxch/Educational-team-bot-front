@@ -76,11 +76,6 @@ try
             new HeaderApiVersionReader("X-Version"),
             new MediaTypeApiVersionReader("ver"));
     });
-
-    builder.Services.AddSingleton<CosmosClient>(serviceProvider =>
-    {
-        return new CosmosClient(Environment.GetEnvironmentVariable("COSMOSDB_CONNECTION_STRING"));
-    });
     builder.Services.AddVersionedApiExplorer(
         options =>
         {

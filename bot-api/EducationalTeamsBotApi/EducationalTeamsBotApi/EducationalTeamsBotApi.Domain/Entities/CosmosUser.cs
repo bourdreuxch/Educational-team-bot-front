@@ -1,12 +1,12 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CosmosUser.cs" company="DiiageBot Team">
-// Copyright (c) DIIAGE Groupe 1 2022. All rights reserved.
+// <copyright file="CosmosUser.cs" company="DIIAGE">
+// Copyright (c) DIIAGE 2022. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 namespace EducationalTeamsBotApi.Domain.Entities
 {
     /// <summary>
-    /// Users contained in a cosmosDb format
+    /// Users (admins) contained in a cosmosDb format.
     /// </summary>
     public class CosmosUser
     {
