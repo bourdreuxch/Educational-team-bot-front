@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -91,6 +92,22 @@ try
         .EnableTokenAcquisitionToCallDownstreamApi()
         .AddInMemoryTokenCaches();
 
+    //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    //  .AddJwtBearer(options =>
+    //  {
+    //      options.Audience = builder.Configuration["AzureAd:Audience"];
+    //      options.Authority = builder.Configuration["AzureAd:Instance"] + "/" + builder.Configuration["AzureAd:TenantId"];
+    //      options.Events = new JwtBearerEvents
+    //      {
+    //          OnTokenValidated = async context =>
+    //          {
+    //              var token = context.HttpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
+    //          },
+    //      };
+    //  });
+
+    builder.Services.AddScoped<ITokenService, TokenService>();
+
     builder.Services.AddApiVersioning(o =>
     {
         o.AssumeDefaultVersionWhenUnspecified = true;
@@ -109,12 +126,6 @@ try
             options.GroupNameFormat = "'v'VVV";
             options.SubstituteApiVersionInUrl = true;
         });
-
-    // Add configuration scoped
-    //builder.Services.AddScoped((serviceProvider) =>
-    //{
-    //    return builder.Configuration;
-    //});
 
     if (builder.Environment.IsDevelopment() || builder.Environment.IsEnvironment("Tests"))
     {
