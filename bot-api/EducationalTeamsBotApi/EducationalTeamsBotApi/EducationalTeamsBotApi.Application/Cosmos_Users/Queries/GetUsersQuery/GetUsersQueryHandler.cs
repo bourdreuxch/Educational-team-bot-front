@@ -20,15 +20,15 @@ namespace EducationalTeamsBotApi.Application.Cosmos_Users.Queries.GetUsersQuery
         /// <summary>
         /// cosmos service.
         /// </summary>
-        private readonly ICosmosDbService cosmosDbService;
+        private readonly IUserCosmosService userCosmosService;
 
         /// <summary>
         ///  Initializes a new instance of the <see cref="GetUsersQueryHandler"/> class.
         /// </summary>
-        /// <param name="cosmosDbService"> cosmos service.</param>
-        public GetUsersQueryHandler(ICosmosDbService cosmosDbService)
+        /// <param name="userCosmosService"> cosmos service.</param>
+        public GetUsersQueryHandler(IUserCosmosService userCosmosService)
         {
-            this.cosmosDbService = cosmosDbService;
+            this.userCosmosService = userCosmosService;
         }
 
         /// <inheritdoc/>
