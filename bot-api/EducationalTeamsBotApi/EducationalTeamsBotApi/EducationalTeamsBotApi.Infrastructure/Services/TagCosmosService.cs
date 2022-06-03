@@ -11,6 +11,10 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     using EducationalTeamsBotApi.Application.Common.Interfaces;
     using EducationalTeamsBotApi.Domain.Entities;
     using Microsoft.Azure.Cosmos;
+    using Microsoft.Azure.Cosmos.Linq;
+
+
+
 
     /// <summary>
     /// Class that will interact with the CosmosDB.
