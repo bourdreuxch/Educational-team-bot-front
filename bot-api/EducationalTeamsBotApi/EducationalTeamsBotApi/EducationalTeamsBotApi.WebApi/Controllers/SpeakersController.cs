@@ -6,6 +6,7 @@
 
 namespace EducationalTeamsBotApi.WebApi.Controllers
 {
+    using EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakerQuery;
     using EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,28 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         {
             try
             {
-                var speakers = await this.Mediator.Send(new GetSpeakerQuery());
+                var speakers = await this.Mediator.Send(new GetSpeakersQuery());
+                return this.Ok(speakers);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Gets the list of all speakers.
+        /// </summary>
+        /// <param name="id">Identifier of the speaker.</param>
+        /// <returns>A list of speakers.</returns>
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetSpeaker(string id)
+        {
+            try
+            {
+                var speakers = await this.Mediator.Send(new GetSpeakerQuery { SpeakerId = id } );
                 return this.Ok(speakers);
             }
             catch (Exception e)

@@ -4,9 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
+namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakerQuery
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using EducationalTeamsBotApi.Application.Common.Interfaces;
@@ -14,11 +13,10 @@ namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
     using MediatR;
 
     /// <summary>
-    /// Handler for the query that will get speakers.
+    /// Handler for the query that will get a speaker.
     /// </summary>
-    public class GetSpeakerQueryHandler : IRequestHandler<GetSpeakerQuery, IEnumerable<CosmosSpeaker>>
+    public class GetSpeakerQueryHandler : IRequestHandler<GetSpeakerQuery, CosmosSpeaker>
     {
-
         private readonly ISpeakerCosmosService speakerCosmosService;
 
         /// <summary>
@@ -31,9 +29,9 @@ namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<CosmosSpeaker>> Handle(GetSpeakerQuery request, CancellationToken cancellationToken)
+        public Task<CosmosSpeaker> Handle(GetSpeakerQuery request, CancellationToken cancellationToken)
         {
-            return this.speakerCosmosService.GetCosmosSpeakers();
+            return this.speakerCosmosService.GetSpeaker(request.SpeakerId);
         }
     }
 }

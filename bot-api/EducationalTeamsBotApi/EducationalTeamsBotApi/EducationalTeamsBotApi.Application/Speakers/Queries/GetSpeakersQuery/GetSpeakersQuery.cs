@@ -1,10 +1,8 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GetSpeakerQuery.cs" company="DIIAGE">
+// <copyright file="GetSpeakersQuery.cs" company="DIIAGE">
 // Copyright (c) DIIAGE 2022. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-
-
 
 namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
 {
@@ -12,9 +10,9 @@ namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
     using MediatR;
 
     /// <summary>
-    /// Get the list of speakers
+    /// Get the list of speakers.
     /// </summary>
-    public class GetSpeakerQuery : IRequest<IEnumerable<CosmosSpeaker>>
+    public class GetSpeakersQuery : IRequest<IEnumerable<CosmosSpeaker>>
     {
     }
 }
