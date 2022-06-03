@@ -11,6 +11,8 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     using EducationalTeamsBotApi.Application.Common.Interfaces;
     using EducationalTeamsBotApi.Domain.Entities;
     using Microsoft.Azure.Cosmos;
+    using Microsoft.Azure.Cosmos.Linq;
+
 
     /// <summary>
     /// Class that will interact with the CosmosDB.
@@ -53,15 +55,26 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<CosmosSpeaker>> GetCosmosSpeakers()
+        public async Task<IEnumerable<CosmosSpeaker>> GetCosmosSpeakers()
         {
-            throw new NotImplementedException();
+            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
+            var container = db.GetContainer("Speakers");
+            var speakers = container.GetItemLinqQueryable<CosmosSpeaker>();
+            var iterator = speakers.ToFeedIterator();
+            var results = await iterator.ReadNextAsync();
+
+            return Tools.ToIEnumerable(results.GetEnumerator());
         }
 
         /// <inheritdoc/>
-        public Task<CosmosSpeaker> GetSpeaker(string id)
+        public async Task<CosmosSpeaker> GetSpeaker(string id)
         {
-            throw new NotImplementedException();
+            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
+            var container = db.GetContainer("Speakers");
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = " + '"' + id + '"');
+            var speaker = container.GetItemQueryIterator<CosmosSpeaker>(query);
+            var result = await speaker.ReadNextAsync();
+            return Tools.ToIEnumerable(result.GetEnumerator()).First();
         }
     }
 }
