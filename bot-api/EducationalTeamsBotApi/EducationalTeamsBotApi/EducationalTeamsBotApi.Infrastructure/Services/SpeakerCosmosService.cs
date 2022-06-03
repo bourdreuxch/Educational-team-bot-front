@@ -71,10 +71,10 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         {
             var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
             var container = db.GetContainer("Speakers");
-
-            var speaker = container.GetItemQueryIterator<CosmosSpeaker>("SELECT * FROM c WHERE c.id = " + id);
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = " + '"' + id + '"');
+            var speaker = container.GetItemQueryIterator<CosmosSpeaker>(query);
             var result = await speaker.ReadNextAsync();
-            return (CosmosSpeaker)result.GetEnumerator();
+            return Tools.ToIEnumerable(result.GetEnumerator()).First();
         }
     }
 }
