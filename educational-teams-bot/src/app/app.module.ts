@@ -32,17 +32,19 @@ const imports = [
     {
       interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       authRequest: {
-        scopes: [`api://${environment.clientId}/access_as_user`],
+        scopes: [
+          'User.Read.All'
+        ],
       },
     },
     {
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
         [
-          `${environment.apiEndpoint}/api`,
+          `${environment.apiEndpoint}/api/`,
           [`api://${environment.clientId}/access_as_user`],
         ],
-        ['https://graph.microsoft.com', ['user.read.all']],
+        ['https://graph.microsoft.com', ['User.Read.All']],
       ]),
     }
   ),
