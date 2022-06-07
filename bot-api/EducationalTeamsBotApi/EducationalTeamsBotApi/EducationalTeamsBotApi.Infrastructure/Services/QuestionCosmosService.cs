@@ -90,49 +90,18 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public async Task<string> QuestionAsked(Activity question)
+        public async Task<string> QuestionAsked(string question)
         {
-            var mention = new Mention
-            {
-                Mentioned = question.From,
-                Text = $"<at>{XmlConvert.EncodeName(question.From.Name)}</at>",
-            };
-
-            var replyActivity = MessageFactory.Text($"Hello {mention.Text}.");
-            replyActivity.Entities = new List<Entity> { mention };
-            var turnContext = question.GetConversationReference();
-            turnContext.GetContinuationActivity().CreateReply();
-            question.CreateReply($"Hello {mention.Text}.");
-
-            var conv = question.GetConversationReference();
-
             var queryingURL = "https://qnadiibot.azurewebsites.net";
             var endpointKey = await this.qnaClient.EndpointKeys.GetKeysAsync();
             var qnaRuntimeCli = new QnAMakerRuntimeClient(new EndpointKeyServiceClientCredentials(endpointKey.PrimaryEndpointKey)) { RuntimeEndpoint = queryingURL };
 
-            var response = await qnaRuntimeCli.Runtime.GenerateAnswerAsync("770b2be2-e25f-4963-b502-93961da9f88f", new QueryDTO { Question = question.Text });
+            var response = await qnaRuntimeCli.Runtime.GenerateAnswerAsync("770b2be2-e25f-4963-b502-93961da9f88f", new QueryDTO { Question = question });
             var res = response.Answers[0].Answer;
             if (response.Answers[0].Answer == "No good match found in KB.")
             {
                 res = "Pas de solution mais je reste à l'écoute";
             }
-
-            Console.WriteLine("Endpoint Response: {0}.", response.Answers[0].Answer);
-            var responseBot = new Activity();
-            responseBot.Conversation = question.Conversation;
-            responseBot.From = question.Recipient;
-            responseBot.Locale = question.Locale;
-            responseBot.Recipient = question.From;
-            responseBot.ReplyToId = question.Id;
-            responseBot.Type = "message";
-            responseBot.Text = res;
-
-            var httpclient = new HttpClient();
-            var httpRequest = new HttpRequestMessage();
-            httpRequest.Method = HttpMethod.Post;
-            httpRequest.RequestUri = new Uri($"https://smba.trafficmanager.net/apis//v3/conversations/{responseBot.Conversation.Id}/activities/{responseBot.Id}");
-            httpRequest.Headers("Authorization")
-            var responseHttp = httpclient.Send(httpRequest);
 
             return res;
         }

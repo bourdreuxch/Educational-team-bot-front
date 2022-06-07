@@ -15,6 +15,7 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
     using Microsoft.Bot.Schema;
     using Microsoft.Bot.Connector.Teams;
     using System.Xml;
+    using EducationalTeamsBotApi.Application.Common.DTOs;
 
     /// <summary>
     /// Controller allowing to interact with questions.
@@ -45,15 +46,16 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         /// <summary>
         /// Answer a given question.
         /// </summary>
-        /// <param name="activity">the question asked.</param>
+        /// <param name="question">the question asked.</param>
         /// <returns>the answer.</returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task QuestionAsked([FromBody] Activity activity)
+        public async Task<IActionResult> QuestionAsked([FromBody] string question)
         {
             try
             {
-               await this.Mediator.Send(new AskQuestionCommand { Activity = activity });
+               var res = await this.Mediator.Send(new AskQuestionCommand { Activity = question });
+               return this.Ok(res);
             }
             catch (Exception e)
             {

@@ -18,6 +18,6 @@ namespace EducationalTeamsBotApi.Application.Questions.Commands.AskQuestion
         /// <summary>
         /// Gets or sets The content of the question.
         /// </summary>
-        public Activity Activity { get; set; }
+        public string Activity { get; set; }
     }
 }
