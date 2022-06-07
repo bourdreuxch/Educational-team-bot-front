@@ -18,7 +18,6 @@ namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakersQuery
     /// </summary>
     public class GetSpeakersQueryHandler : IRequestHandler<GetSpeakersQuery, IEnumerable<CosmosSpeaker>>
     {
-
         private readonly ISpeakerCosmosService speakerCosmosService;
 
         /// <summary>
