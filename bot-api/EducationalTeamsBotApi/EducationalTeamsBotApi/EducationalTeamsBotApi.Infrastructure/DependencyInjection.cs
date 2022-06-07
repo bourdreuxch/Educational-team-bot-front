@@ -12,6 +12,9 @@ namespace EducationalTeamsBotApi.Infrastructure
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Graph;
+    using Microsoft.Azure.CognitiveServices.Knowledge.QnAMaker;
+    using Microsoft.Azure.CognitiveServices.Knowledge.QnAMaker.Models;
+    using Microsoft.Bot.Connector;
 
     /// <summary>
     /// Static class providing an extension method to handle dependency injection for the infrastructure layer.
