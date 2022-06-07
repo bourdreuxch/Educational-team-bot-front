@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
@@ -105,7 +106,6 @@ try
             new HeaderApiVersionReader("X-Version"),
             new MediaTypeApiVersionReader("ver"));
     });
-
     builder.Services.AddVersionedApiExplorer(
         options =>
         {

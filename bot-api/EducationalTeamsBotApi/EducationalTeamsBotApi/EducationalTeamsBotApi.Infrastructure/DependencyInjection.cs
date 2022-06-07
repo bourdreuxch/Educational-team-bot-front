@@ -28,6 +28,12 @@ namespace EducationalTeamsBotApi.Infrastructure
         {
             services.AddScoped<GraphServiceClient, GraphServiceClient>();
             services.AddScoped<IGraphService, GraphService>();
+            services.AddScoped<ISpeakerCosmosService, SpeakerCosmosService>();
+            services.AddScoped<IUserCosmosService, UserCosmosService>();
+            services.AddScoped<IQuestionCosmosService, QuestionCosmosService>();
+            services.AddScoped<IReactionCosmosService, ReactionCosmosService>();
+            services.AddScoped<IAnswerCosmosService, AnswerCosmosService>();
+            services.AddScoped<ITagCosmosService, TagCosmosService>();
 
             return services;
         }
