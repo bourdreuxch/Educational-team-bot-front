@@ -25,17 +25,26 @@ const imports = [
         authority: `https://login.microsoftonline.com/${environment.tenantId}`,
         redirectUri: environment.redirectUri,
       },
+      cache: {
+        cacheLocation: 'localStorage',
+      },
     }),
     {
-      interactionType: InteractionType.Redirect,
+      interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       authRequest: {
-        scopes: ['user.read'],
+        scopes: [
+          'User.Read.All'
+        ],
       },
     },
     {
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
-        ['https://graph.microsoft.com/v1.0/me', ['user.read']],
+        [
+          `${environment.apiEndpoint}/api/`,
+          [`api://${environment.clientId}/access_as_user`],
+        ],
+        ['https://graph.microsoft.com', ['User.Read.All']],
       ]),
     }
   ),
