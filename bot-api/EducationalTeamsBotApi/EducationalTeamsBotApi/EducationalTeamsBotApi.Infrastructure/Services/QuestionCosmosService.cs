@@ -18,27 +18,68 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Microsoft.Bot.Connector;
+    using Microsoft.Extensions.Configuration;
 
     /// <summary>
     /// Class that will interact with the CosmosDB.
     /// </summary>
     public class QuestionCosmosService : IQuestionCosmosService
     {
+        /// <summary>
+        /// Cosmos client used in this service.
+        /// </summary>
         private readonly CosmosClient cosmosClient;
+
+        /// <summary>
+        /// Qna Maker client used in this service.
+        /// </summary>
         private readonly QnAMakerClient qnaClient;
+
+        /// <summary>
+        /// Database used in this service.
+        /// </summary>
+        private readonly Database database;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QuestionCosmosService"/> class.
         /// </summary>
-        public QuestionCosmosService()
+        public QuestionCosmosService(IConfiguration configuration)
         {
-            var authoringKey = "113614810bcf4284bc388fc6f0f7ca7b";
-            var authoringURL = "https://qnadiibot.cognitiveservices.azure.com/";
-            var cosmosConString = Environment.GetEnvironmentVariable("COSMOS_CON_STRING");
-            this.cosmosClient = new CosmosClient(cosmosConString);
+            var authoringKey = configuration["QnaMaker:AuthoringKey"];
+            var authoringURL = configuration["QnaMaker:AuthoringUrl"];
+
             this.qnaClient = new QnAMakerClient(new ApiKeyServiceClientCredentials(authoringKey))
-            { Endpoint = authoringURL };
-            
+            {
+                Endpoint = authoringURL,
+            };
+
+            var cosmosConString = Environment.GetEnvironmentVariable("COSMOS_CON_STRING");
+
+            var options = new CosmosClientOptions() { ConnectionMode = ConnectionMode.Gateway };
+
+            this.cosmosClient = new CosmosClient(cosmosConString, options);
+
+            this.database = this.cosmosClient.GetDatabase("DiiageBotDatabase");
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<CosmosQuestion>> InsertCosmosQuestions(List<CosmosQuestion> questions)
+        {
+            var container = this.database.GetContainer("Questions");
+
+            var insertedQuestions = new List<CosmosQuestion>();
+
+            questions.ForEach(async question =>
+            {
+                // If question already exists, ignore it
+                var existingQuestion = this.GetQuestion(question.Id);
+                if (existingQuestion == null)
+                {
+                    insertedQuestions.Add(await container.CreateItemAsync(question));
+                }
+            });
+
+            return insertedQuestions;
         }
 
         /// <inheritdoc/>
@@ -78,9 +119,13 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public Task<CosmosQuestion> GetQuestion(string id)
+        public async Task<CosmosQuestion> GetQuestion(string id)
         {
-            throw new NotImplementedException();
+            var container = this.database.GetContainer("Questions");
+            var query = new QueryDefinition("SELECT * FROM q WHERE q.id = " + '"' + id + '"');
+            var question = container.GetItemQueryIterator<CosmosQuestion>(query);
+            var result = await question.ReadNextAsync();
+            return Tools.ToIEnumerable(result.GetEnumerator()).First();
         }
 
         /// <inheritdoc/>
@@ -118,21 +163,6 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
             }
 
             Console.WriteLine("Endpoint Response: {0}.", response.Answers[0].Answer);
-            var responseBot = new Activity();
-            responseBot.Conversation = question.Conversation;
-            responseBot.From = question.Recipient;
-            responseBot.Locale = question.Locale;
-            responseBot.Recipient = question.From;
-            responseBot.ReplyToId = question.Id;
-            responseBot.Type = "message";
-            responseBot.Text = res;
-
-            var httpclient = new HttpClient();
-            var httpRequest = new HttpRequestMessage();
-            httpRequest.Method = HttpMethod.Post;
-            httpRequest.RequestUri = new Uri($"https://smba.trafficmanager.net/apis//v3/conversations/{responseBot.Conversation.Id}/activities/{responseBot.Id}");
-            httpRequest.Headers("Authorization")
-            var responseHttp = httpclient.Send(httpRequest);
 
             return res;
         }

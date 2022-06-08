@@ -1,20 +1,21 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GetMessagesQueryHandler.cs" company="DIIAGE">
+// <copyright file="GetJoinedTeamsQueryHandler.cs" company="DIIAGE">
 // Copyright (c) DIIAGE 2022. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-namespace EducationalTeamsBotApi.Application.Messages.Queries.GetMessagesQuery
+
+namespace EducationalTeamsBotApi.Application.Teams.Queries.GetJoinedTeamsQuery
 {
-    using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using EducationalTeamsBotApi.Application.Common.Interfaces;
     using MediatR;
     using Microsoft.Graph;
 
     /// <summary>
-    /// Handler for the query that will get messages.
+    /// Handler for <see cref="GetJoinedTeamsQuery"/>.
     /// </summary>
-    public class GetMessagesQueryHandler : IRequestHandler<GetMessagesQuery, IEnumerable<SearchEntity>>
+    public class GetJoinedTeamsQueryHandler : IRequestHandler<GetJoinedTeamsQuery, IEnumerable<Team>>
     {
         /// <summary>
         /// Graph service.
@@ -22,18 +23,18 @@ namespace EducationalTeamsBotApi.Application.Messages.Queries.GetMessagesQuery
         private readonly IGraphService graphService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetMessagesQueryHandler"/> class.
+        /// Initializes a new instance of the <see cref="GetJoinedTeamsQueryHandler"/> class.
         /// </summary>
         /// <param name="graphService">Graph service.</param>
-        public GetMessagesQueryHandler(IGraphService graphService)
+        public GetJoinedTeamsQueryHandler(IGraphService graphService)
         {
             this.graphService = graphService;
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<SearchEntity>> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Team>> Handle(GetJoinedTeamsQuery request, CancellationToken cancellationToken)
         {
-            return new List<SearchEntity>();
+            return await this.graphService.GetJoinedTeams();
         }
     }
 }

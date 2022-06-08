@@ -75,38 +75,47 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<SearchEntity>> GetMessages()
+        public async Task<IEnumerable<Team>> GetJoinedTeams()
         {
-            var messages = new List<SearchEntity>();
-            //var requestContent = new List<SearchRequestObject>()
-            //{
-            //    new SearchRequestObject
-            //    {
-            //        EntityTypes = new List<EntityType>()
-            //        {
-            //            EntityType.Message,
-            //        },
-            //        Query = new SearchQuery
-            //        {
-            //            QueryString = "test",
-            //        },
-            //    },
-            //};
+            var teams = new List<Team>();
 
-            //var requestResult = await this.graphServiceClient.Search
-            //    .Query(requestContent)
-            //    .Request()
-            //    .PostAsync();
+            var requestResult = await this.graphServiceClient.Me.JoinedTeams
+                .Request()
+                .GetAsync();
 
-            //messages.AddRange(requestResult);
+            teams.AddRange(requestResult);
 
-            return messages;
+            return teams;
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<Group>> GetTeams()
+        public async Task<IEnumerable<Channel>> GetTeamChannels(string teamId)
         {
-            throw new NotImplementedException();
+            var channels = new List<Channel>();
+
+            var requestResult = await this.graphServiceClient.Teams[$"{teamId}"].Channels
+                .Request()
+                .GetAsync();
+
+            channels.AddRange(requestResult);
+
+            return channels;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<ChatMessage>> GetChannelMessages(string teamId, string channelId)
+        {
+            var messages = new List<ChatMessage>();
+
+            var requestResult = await this.graphServiceClient.Teams[$"{teamId}"].Channels[$"{channelId}"].Messages
+                .Request()
+                .GetAsync();
+
+            messages.AddRange(requestResult);
+
+            /* TODO: Insert messages in DB if they does not exist in the query handler */
+
+            return messages;
         }
 
         /// <inheritdoc/>

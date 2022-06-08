@@ -5,13 +5,13 @@
 // -----------------------------------------------------------------------
 namespace EducationalTeamsBotApi.WebApi.Controllers
 {
+    using EducationalTeamsBotApi.Application.Messages.Commands.Graph_SyncMessagesCommand;
     using EducationalTeamsBotApi.Application.Messages.Queries.GetMessagesQuery;
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
     /// Controller allowing to interact with messages.
     /// </summary>
-    [Route("api/[controller]")]
     [ApiController]
     public class MessagesController : ApiBaseController
     {
@@ -22,8 +22,29 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMessages()
         {
-            var test = await this.Mediator.Send(new GetMessagesQuery());
-            return this.Ok(test);
+            var messages = await this.Mediator.Send(new GetMessagesQuery());
+            return this.Ok(messages);
+        }
+
+        /// <summary>
+        /// Get the list of messages for a team channel from Graph and update database.
+        /// </summary>
+        /// <param name="teamId">Graph team identifier.</param>
+        /// <param name="channelId">Graph channel identifier.</param>
+        /// <returns>A <see cref="CreatedResult"/>.</returns>
+        [HttpGet("sync")]
+        public async Task<IActionResult> SyncGraphMessages(string teamId, string channelId)
+        {
+            var result = await this.Mediator.Send(new Graph_SyncChannelMessagesCommand { TeamId = teamId, ChannelId = channelId});
+
+            if (result)
+            {
+                return this.StatusCode(201);
+            }
+            else
+            {
+                return this.Conflict("Messages from this channel are already synced.");
+            }
         }
     }
 }
