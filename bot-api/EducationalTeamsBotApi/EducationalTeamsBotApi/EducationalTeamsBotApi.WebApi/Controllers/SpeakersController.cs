@@ -11,7 +11,6 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-
     /// <summary>
     /// Controller allowing to interact with speakers.
     /// </summary>
