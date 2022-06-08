@@ -19,13 +19,40 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     {
         private readonly CosmosClient cosmosClient;
 
+        private readonly Database database;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="QuestionCosmosService"/> class.
         /// </summary>
         public QuestionCosmosService()
         {
             var cosmosConString = Environment.GetEnvironmentVariable("COSMOS_CON_STRING");
-            this.cosmosClient = new CosmosClient(cosmosConString);
+
+            var options = new CosmosClientOptions() { ConnectionMode = ConnectionMode.Gateway };
+
+            this.cosmosClient = new CosmosClient(cosmosConString, options);
+
+            this.database = this.cosmosClient.GetDatabase("DiiageBotDatabase");
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<CosmosQuestion>> InsertCosmosQuestions(List<CosmosQuestion> questions)
+        {
+            var container = this.database.GetContainer("Questions");
+
+            var insertedQuestions = new List<CosmosQuestion>();
+
+            questions.ForEach(async question =>
+            {
+                // If question already exists, ignore it
+                var existingQuestion = this.GetQuestion(question.Id);
+                if (existingQuestion == null)
+                {
+                    insertedQuestions.Add(await container.CreateItemAsync(question));
+                }
+            });
+
+            return insertedQuestions;
         }
 
         /// <inheritdoc/>
@@ -59,9 +86,13 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         }
 
         /// <inheritdoc/>
-        public Task<CosmosQuestion> GetQuestion(string id)
+        public async Task<CosmosQuestion> GetQuestion(string id)
         {
-            throw new NotImplementedException();
+            var container = this.database.GetContainer("Questions");
+            var query = new QueryDefinition("SELECT * FROM q WHERE q.id = " + '"' + id + '"');
+            var question = container.GetItemQueryIterator<CosmosQuestion>(query);
+            var result = await question.ReadNextAsync();
+            return Tools.ToIEnumerable(result.GetEnumerator()).First();
         }
     }
 }
