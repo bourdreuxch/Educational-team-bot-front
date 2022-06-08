@@ -6,10 +6,7 @@
 namespace EducationalTeamsBotApi.Infrastructure
 {
     using EducationalTeamsBotApi.Application.Common.Interfaces;
-    using EducationalTeamsBotApi.Infrastructure.Persistence;
     using EducationalTeamsBotApi.Infrastructure.Services;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Graph;
 
@@ -22,9 +19,8 @@ namespace EducationalTeamsBotApi.Infrastructure
         /// Configures and returns a service collection for the infrastructure layer.
         /// </summary>
         /// <param name="services">Service collection.</param>
-        /// <param name="configuration">Configuration of the application.</param>
         /// <returns>Returns a <see cref="ServiceCollection"/>.</returns>
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<GraphServiceClient, GraphServiceClient>();
             services.AddScoped<IGraphService, GraphService>();

@@ -15,7 +15,6 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
     /// <summary>
     /// Controller allowing to interact with speakers.
     /// </summary>
-    [Route("api/[controller]")]
     [ApiController]
     public class SpeakersController : ApiBaseController
     {
@@ -24,7 +23,6 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         /// </summary>
         /// <returns>A list of speakers.</returns>
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> GetSpeakers()
         {
             try
@@ -32,10 +30,10 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
                 var speakers = await this.Mediator.Send(new GetSpeakersQuery());
                 return this.Ok(speakers);
             }
-            catch (Exception e)
-            {
 
-                throw e;
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -45,18 +43,17 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         /// <param name="id">Identifier of the speaker.</param>
         /// <returns>A list of speakers.</returns>
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public async Task<IActionResult> GetSpeaker(string id)
         {
             try
             {
-                var speakers = await this.Mediator.Send(new GetSpeakerQuery { SpeakerId = id } );
+
+                var speakers = await this.Mediator.Send(new GetSpeakerQuery { SpeakerId = id });
                 return this.Ok(speakers);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                throw e;
+                throw;
             }
         }
     }

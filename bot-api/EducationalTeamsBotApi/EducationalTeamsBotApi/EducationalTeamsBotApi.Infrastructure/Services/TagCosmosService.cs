@@ -8,6 +8,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using EducationalTeamsBotApi.Application.Common.Constants;
     using EducationalTeamsBotApi.Application.Common.Interfaces;
     using EducationalTeamsBotApi.Domain.Entities;
     using MediatR;
@@ -30,6 +31,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
             var options = new CosmosClientOptions() { ConnectionMode = ConnectionMode.Gateway };
 
             this.cosmosClient = new CosmosClient(cosmosConString, options);
+
         }
 
         /// <inheritdoc/>

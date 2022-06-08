@@ -19,6 +19,7 @@ namespace EducationalTeamsBotApi.Domain.Entities
         /// <param name="id">identifier of a tag.</param>
         public CosmosTag()
         {
+
             this.Variants = new List<string>();
         }
 
