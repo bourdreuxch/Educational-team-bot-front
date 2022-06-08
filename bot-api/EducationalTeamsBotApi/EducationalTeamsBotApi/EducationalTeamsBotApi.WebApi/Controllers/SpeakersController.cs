@@ -11,6 +11,7 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+
     /// <summary>
     /// Controller allowing to interact with speakers.
     /// </summary>
@@ -29,6 +30,7 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
                 var speakers = await this.Mediator.Send(new GetSpeakersQuery());
                 return this.Ok(speakers);
             }
+
             catch (Exception)
             {
                 throw;
@@ -45,6 +47,7 @@ namespace EducationalTeamsBotApi.WebApi.Controllers
         {
             try
             {
+
                 var speakers = await this.Mediator.Send(new GetSpeakerQuery { SpeakerId = id });
                 return this.Ok(speakers);
             }

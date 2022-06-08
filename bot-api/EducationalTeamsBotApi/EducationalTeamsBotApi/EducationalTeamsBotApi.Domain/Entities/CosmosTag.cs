@@ -17,9 +17,9 @@ namespace EducationalTeamsBotApi.Domain.Entities
         /// Initializes a new instance of the <see cref="CosmosTag"/> class.
         /// </summary>
         /// <param name="id">identifier of a tag.</param>
-        public CosmosTag(string id)
+        public CosmosTag()
         {
-            this.Id = id;
+
             this.Variants = new List<string>();
         }
 
@@ -30,7 +30,7 @@ namespace EducationalTeamsBotApi.Domain.Entities
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets every variations of a tag.
+        /// Gets or sets every variants of a tag.
         /// </summary>
         [JsonProperty("variants")]
         public IEnumerable<string> Variants { get; set; }
