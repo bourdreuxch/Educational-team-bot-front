@@ -78,6 +78,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public async Task<CosmosSpeaker> GetSpeaker(string id)
         {
+
             var container = this.database.GetContainer(DatabaseConstants.SpeakerContainer);
             var q = container.GetItemLinqQueryable<CosmosSpeaker>();
             var iterator = q.Where(x => x.Id == id).ToFeedIterator();

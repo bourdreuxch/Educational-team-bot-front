@@ -1,23 +1,22 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GetSpeakerQuery.cs" company="DIIAGE">
+// <copyright file="GetTagQuery.cs" company="DIIAGE">
 // Copyright (c) DIIAGE 2022. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace EducationalTeamsBotApi.Application.Speakers.Queries.GetSpeakerQuery
+namespace EducationalTeamsBotApi.Application.Tags.Queries.GetTagQuery
 {
     using EducationalTeamsBotApi.Domain.Entities;
     using MediatR;
 
     /// <summary>
-    /// Get a speaker.
+    /// Query for the research of tag.
     /// </summary>
-    public class GetSpeakerQuery : IRequest<CosmosSpeaker>
+    public class GetTagQuery : IRequest<CosmosTag>
     {
         /// <summary>
-        /// Gets or sets the id of the speaker.
+        /// Gets or Sets identifier of a tag.
         /// </summary>
-
-        public string? SpeakerId { get; set; }
+        public string? Id { get; set; }
     }
 }
