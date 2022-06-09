@@ -1,1 +1,4 @@
 <p>questions works!</p>
+<div *ngFor="let question of questions$ | async; let i = index">
+  <div class="text-white" [innerHTML]="question.content"></div>
+</div>

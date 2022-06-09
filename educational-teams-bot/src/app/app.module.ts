@@ -11,6 +11,7 @@ import { MsalModule } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { environment } from 'src/environments/environment';
 import { FeaturesModule } from './features/features.module';
+import { StoreModule } from '@ngrx/store';
 
 const imports = [
   BrowserModule,
@@ -32,9 +33,7 @@ const imports = [
     {
       interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       authRequest: {
-        scopes: [
-          'User.Read.All'
-        ],
+        scopes: ['User.Read.All'],
       },
     },
     {
@@ -53,7 +52,7 @@ const imports = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [...imports],
+  imports: [...imports, StoreModule.forRoot({}, {})],
   providers: [],
   bootstrap: [AppComponent],
 })
