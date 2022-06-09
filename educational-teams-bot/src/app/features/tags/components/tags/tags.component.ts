@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Tag } from '../../../../../entities/tag';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +21,7 @@ export class TagsComponent implements OnInit {
      name: 'tag 3'
    }
  ];
- 
+
   constructor() { }
 
   ngOnInit(): void {
