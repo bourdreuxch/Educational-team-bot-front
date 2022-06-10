@@ -2,7 +2,6 @@
  * Reaction class.
  */
 export class Reaction {
-
   /**
    * Reaction identifier.
    */
@@ -16,7 +15,7 @@ export class Reaction {
   /**
    * Reaction value.
    */
-  value: Number;
+  value: number;
 
   /**
    * Initializes a new instance of the Reaction class.
@@ -24,7 +23,7 @@ export class Reaction {
    * @param reactionId Reaction graph identifier.
    * @param value Value of the reaction.
    */
-  constructor(id: string, reactionId: string, value: Number) {
+  constructor(id: string, reactionId: string, value: number) {
     this.id = id;
     this.reactionId = reactionId;
     this.value = value;

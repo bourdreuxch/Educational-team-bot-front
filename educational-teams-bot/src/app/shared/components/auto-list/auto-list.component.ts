@@ -1,24 +1,18 @@
-import { Component,Inject,Input, OnInit } from '@angular/core';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { AutoTableComponent } from '../auto-table/auto-table.component';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-auto-list',
   templateUrl: './auto-list.component.html',
-  styleUrls: ['./auto-list.component.scss']
+  styleUrls: ['./auto-list.component.scss'],
 })
-export class AutoListComponent implements OnInit {
-  objectList : any
+export class AutoListComponent {
+  objectList: any;
   tipe = require('tipe');
   constructor(@Inject(MAT_DIALOG_DATA) data: any) {
-    this.objectList = data['objectsList']
-    
+    this.objectList = data['objectsList'];
   }
-  propertyOfObject(object:any) {
-    return Object.keys(object)
+  propertyOfObject(object: any) {
+    return Object.keys(object);
   }
-
-  ngOnInit(): void {
-  }
-
 }

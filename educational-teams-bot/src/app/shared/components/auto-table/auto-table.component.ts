@@ -1,73 +1,45 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { Tag } from 'src/app/shared/classes/tag';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AutoListComponent } from '../auto-list/auto-list.component';
 import { AutoUpsertComponent } from '../auto-upsert/auto-upsert.component';
 
 @Component({
   selector: 'app-auto-table',
   templateUrl: './auto-table.component.html',
-  styleUrls: ['./auto-table.component.scss']
+  styleUrls: ['./auto-table.component.scss'],
 })
-export class AutoTableComponent implements OnInit {
-
+export class AutoTableComponent {
   @Input() objectList!: any[];
-  /*
-  @Input()
-  get objectList(): any[] { 
-    console.log('le log du get');
-    
-    return this._objectList; }
-  set objectList(objectList: any[]) {
-    this.objectProperties= this.propertyOfObject(objectList)
-  }
-  private _objectList = [];
-  @Input() objectProperties! : any[]
-  */
   @Input() delete!: Function;
   tipe = require('tipe');
-  constructor(public dialog: MatDialog) { 
+  constructor(public dialog: MatDialog) {}
 
+  propertyOfObject(object: any) {
+    return Object.keys(object);
   }
-
-  ngOnInit(): void {
-  }
-  propertyOfObject(object:any) {
-
-    return Object.keys(object)
-  }
-  customType(object:any)
-  {
-    
-    if(object instanceof Speaker)
-    {
-      return Speaker
-      
-    }
-    else
-    {
-      return Tag
+  customType(object: any) {
+    if (object instanceof Speaker) {
+      return Speaker;
+    } else {
+      return Tag;
     }
   }
-  listModal(objects:any[]) {
-    
+  listModal(objects: any[]) {
     let dialogRef = this.dialog.open(AutoListComponent, {
-      data: {objectsList: objects, }
-    }
-    );
-    dialogRef.afterClosed().subscribe(result => {
+      data: { objectsList: objects },
+    });
+    dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
     });
   }
-  edit(object:any) {
-    
+  edit(object: any) {
     let dialogRef = this.dialog.open(AutoUpsertComponent, {
-      data: {object: object, }
-    }
-    );
-    dialogRef.afterClosed().subscribe(result => {
+      data: { object: object },
+    });
+    dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
     });
   }
-  }
+}

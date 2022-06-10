@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Tag } from 'src/app/shared/classes/tag';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { AutoCrudService } from 'src/app/shared/services/auto-crud.service';
@@ -9,7 +9,7 @@ import { AutoCrudService } from 'src/app/shared/services/auto-crud.service';
   templateUrl: './auto-upsert.component.html',
   styleUrls: ['./auto-upsert.component.scss'],
 })
-export class AutoUpsertComponent implements OnInit {
+export class AutoUpsertComponent {
   myForm!: FormGroup;
   _object: any;
 
@@ -41,7 +41,6 @@ export class AutoUpsertComponent implements OnInit {
     console.log(this.object);
   }
 
-  ngOnInit(): void {}
   customType(object: any) {
     if (object instanceof Speaker) {
       return true;
