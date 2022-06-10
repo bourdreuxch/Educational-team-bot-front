@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ressources_base_name": {
+            "value": "" 
+        },
+        "env": {
+            "value": "staging"
+        },
+        "appName": {
+            "value": "" 
+        },
+        "azureSearchLocation": {
+            "value": "francecentral"
+        },
+        "sku": {
+            "value": "F0"
+        },
+        "azureSearchSku": {
+            "value": "free"
+        },
+        "searchHostingMode": {
+            "value": "Default"
+        },
+        "databaseAccounts_dibotaccount_name": {
+            "value": "dibotaccount"
+        }
+    }
+}
