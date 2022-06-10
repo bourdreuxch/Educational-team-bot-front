@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { Tag } from 'src/app/shared/classes/tag';
 import { MatDialog } from '@angular/material/dialog';
