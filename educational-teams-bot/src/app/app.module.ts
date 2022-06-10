@@ -11,6 +11,11 @@ import { MsalModule } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { environment } from 'src/environments/environment';
 import { FeaturesModule } from './features/features.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 const imports = [
   BrowserModule,
@@ -18,6 +23,11 @@ const imports = [
   SharedModule,
   CoreModule,
   NgbModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  
   MsalModule.forRoot(
     new PublicClientApplication({
       auth: {
@@ -25,17 +35,26 @@ const imports = [
         authority: `https://login.microsoftonline.com/${environment.tenantId}`,
         redirectUri: environment.redirectUri,
       },
+      cache: {
+        cacheLocation: 'localStorage',
+      },
     }),
     {
-      interactionType: InteractionType.Redirect,
+      interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       authRequest: {
-        scopes: ['user.read.all'],
+        scopes: [
+          'User.Read.All'
+        ],
       },
     },
     {
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
-        ['https://graph.microsoft.com/v1.0/me', ['user.read.all']],
+        [
+          `${environment.apiEndpoint}/api/`,
+          [`api://${environment.clientId}/access_as_user`],
+        ],
+        ['https://graph.microsoft.com', ['User.Read.All']],
       ]),
     }
   ),
@@ -44,7 +63,7 @@ const imports = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [...imports],
+  imports: [...imports, BrowserAnimationsModule, MatDialogModule],
   providers: [],
   bootstrap: [AppComponent],
 })

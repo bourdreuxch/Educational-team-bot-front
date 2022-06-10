@@ -8,13 +8,13 @@
                 </a>
             </li>
             <li class="navigationElement">
-                <a>
+                <a [routerLink]="['/questions']">
                     <span class="icon"><em class="far fa-question-circle"></em></span>
                     <span class="title">Questions</span>
                 </a>
             </li>
             <li class="navigationElement">
-                <a>
+                <a [routerLink]="['/tags']">
                     <span class="icon"><em class="fas fa-tags"></em></span>
                     <span class="title">Tags</span>
                 </a>
@@ -26,13 +26,13 @@
                 </a>
             </li>
             <li class="navigationElement">
-                <a>
+                <a [routerLink]="['/speakers']">
                     <span class="icon"><em class="far fa-address-card"></em></span>
-                    <span class="title">Profile</span>
+                    <span class="title">Speakers</span>
                 </a>
             </li>
         </ul>
     </div>
-    <div class="toggle" [ngClass]="{'active': drawerOpen}" (click)="drawerOpen = !drawerOpen">
+    <div class="toggle" [ngClass]="{'active': drawerOpen}" (click)="updateDrawer()">
     </div>
 </div>
