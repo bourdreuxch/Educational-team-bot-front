@@ -30,14 +30,14 @@ export class AutoUpsertComponent implements OnInit {
     this._object = value;
   }
    objectProperties: string[] =[];
-  
+
   tipe = require('tipe');
   constructor(private autoCrudService: AutoCrudService,private fb: FormBuilder,@Inject(MAT_DIALOG_DATA, ) data: any) { 
 
     this.object = data['object']
     console.log(this.object);
    
-
+     
   }
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class AutoUpsertComponent implements OnInit {
   listOfType(type:any){
    let test = this.autoCrudService.fetchList(type[0].constructor.name.toLowerCase());
    console.log(test);
-   
+    
     return ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   }
 }

@@ -20,26 +20,32 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
     /// </summary>
     public class TagCosmosService : ITagCosmosService
     {
+        /// <summary>
+        /// Cosmos client used in this service.
+        /// </summary>
         private readonly CosmosClient cosmosClient;
+
+        /// <summary>
+        /// Database used in this service.
+        /// </summary>
+        private readonly Database database;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagCosmosService"/> class.
         /// </summary>
         public TagCosmosService()
         {
-            var cosmosConString = Environment.GetEnvironmentVariable("COSMOS_CON_STRING");
+            var cosmosConString = Environment.GetEnvironmentVariable(DatabaseConstants.ConnectionString);
             var options = new CosmosClientOptions() { ConnectionMode = ConnectionMode.Gateway };
-
             this.cosmosClient = new CosmosClient(cosmosConString, options);
-
+            this.database = this.cosmosClient.GetDatabase(DatabaseConstants.Database);
         }
 
         /// <inheritdoc/>
         public Task<CosmosTag?> AddTag(List<string> variants)
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
-            if (variants.Any())
+            var container = this.database.GetContainer(DatabaseConstants.TagContainer);
+            if (!variants.Any())
             {
                 throw new Exception("No variants");
             }
@@ -53,8 +59,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public Task<CosmosTag?> EditTagVariant(string id, string tagVariant)
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
+            var container = this.database.GetContainer(DatabaseConstants.TagContainer);
 
             var existingTag = this.GetTag(id).Result;
 
@@ -81,8 +86,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public async Task<CosmosTag?> GetTag(string id)
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
+            var container = this.database.GetContainer(DatabaseConstants.TagContainer);
 
             var q = container.GetItemLinqQueryable<CosmosTag>();
             var iterator = q.Where(t => t.Id == id).ToFeedIterator();
@@ -94,8 +98,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public async Task<IEnumerable<CosmosTag>> GetTags()
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
+            var container = this.database.GetContainer(DatabaseConstants.TagContainer);
             var tags = container.GetItemLinqQueryable<CosmosTag>();
             var iterator = tags.ToFeedIterator();
 
@@ -106,8 +109,7 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public async Task<CosmosTag?> SearchTag(string tag)
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
+            var container = this.database.GetContainer(DatabaseConstants.TagContainer);
 
             var q = container.GetItemLinqQueryable<CosmosTag>();
             var iterator = q.Where(t => t.Variants.Contains(tag)).ToFeedIterator();
@@ -119,10 +121,10 @@ namespace EducationalTeamsBotApi.Infrastructure.Services
         /// <inheritdoc/>
         public async Task<Unit> DeleteTag(string id)
         {
-            var db = this.cosmosClient.GetDatabase("DiiageBotDatabase");
-            var container = db.GetContainer("Tags");
+            var containerTag = this.database.GetContainer(DatabaseConstants.TagContainer);
+            var containerSpeaker = this.database.GetContainer(DatabaseConstants.SpeakerContainer);
 
-            await container.DeleteItemAsync<CosmosTag>(id, new PartitionKey(id));
+            await containerTag.DeleteItemAsync<CosmosTag>(id, new PartitionKey(id));
             return default(Unit);
         }
     }
