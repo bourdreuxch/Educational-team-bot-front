@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Question } from 'src/app/shared/classes/question';
 import { QuestionsService } from '../../services/questions.service';
 import { addQuestions } from '../../state/questions.actions';
@@ -13,7 +12,10 @@ import { selectQuestions } from '../../state/questions.selector';
   styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-  questions$: Observable<Array<Question>>;
+  /**
+   * Questions to display.
+   */
+  questions: Question[] = [];
 
   /**
    * Initializes a new instance of the QuestionComponent class.
@@ -23,7 +25,9 @@ export class QuestionsComponent implements OnInit {
     private service: QuestionsService,
     private store: Store<QuestionsState>
   ) {
-    this.questions$ = this.store.pipe(select(selectQuestions));
+    this.store.pipe(select(selectQuestions)).subscribe((q) => {
+      this.questions = q;
+    });
   }
 
   /**
@@ -40,5 +44,19 @@ export class QuestionsComponent implements OnInit {
     this.service.getQuestions().subscribe((questions: Array<Question>) => {
       this.store.dispatch(addQuestions(questions));
     });
+  }
+
+  /**
+   * Display edit modal.
+   */
+  edit() {
+    console.log("salut ça marche je suis l'edit");
+  }
+
+  /**
+   * Removes a question.
+   */
+  delete() {
+    console.log('salut ça marche je suis la destruction');
   }
 }
